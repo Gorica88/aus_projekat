@@ -102,23 +102,16 @@ namespace dCom.Configuration
 						DelayBetweenCommands = Convert.ToInt32(filtered[filtered.Count - 1]);
 						continue;
 					}
-					try
+                    try
                     {
                         ConfigItem ci = new ConfigItem(filtered);
-                        if (pointTypeToConfiguration.Count > 0)
+                        if (!pointTypeToConfiguration.ContainsKey(ci.Description))
                         {
-                            foreach (ConfigItem cf in pointTypeToConfiguration.Values)
-                            {
-                                if (!confItemEqComp.Equals(cf, ci))
-                                {
-                                    pointTypeToConfiguration.Add(ci.Description, ci);
-                                    break;
-                                }
-                            }
+                            pointTypeToConfiguration.Add(ci.Description, ci);
                         }
                         else
                         {
-                            pointTypeToConfiguration.Add(ci.Description, ci);
+                            throw new ConfigurationException("Configuration error: Configuration item description must be unique!");
                         }
                     }
                     catch (ArgumentException argEx)

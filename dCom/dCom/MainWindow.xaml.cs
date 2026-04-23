@@ -39,9 +39,9 @@ namespace dCom
 			cw.ShowDialog();
 		}
 
-		private void Window_Closed(object sender, EventArgs e)
-		{
-			(DataContext as IDisposable).Dispose();
-		}
-	}
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            (DataContext as IDisposable).Dispose();
+        }
+    }
 }
