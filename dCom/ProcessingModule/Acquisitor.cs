@@ -64,7 +64,7 @@ namespace ProcessingModule
                 foreach (var item in configListItems)
                 {
                     item.SecondsPassedSinceLastPoll += 1;
-                    if (item.SecondsPassedSinceLastPoll == item.AcquisitionInterval)
+                    if (item.SecondsPassedSinceLastPoll >= item.AcquisitionInterval)
                     {
                         processingManager.ExecuteReadCommand(item, this.configuration.GetTransactionId(), this.configuration.UnitAddress, item.StartAddress, item.NumberOfRegisters);
                         item.SecondsPassedSinceLastPoll = 0;
